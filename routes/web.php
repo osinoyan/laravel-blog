@@ -17,3 +17,11 @@ Route::get('/', function () {
 Route::get('about', function () {
     return 'Asshole!';
 });
+
+Route::get('/todo', 'TodoController@index');
+Route::post('/todo', 'TodoController@submit');
+Route::get('/ass', function(){
+    return App\Todo::all();
+});
+
+Route::post('/apple', 'TodoController@apple');
