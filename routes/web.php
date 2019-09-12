@@ -11,17 +11,34 @@
 |
 */
 
+// for auth
+Auth::routes();
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/w/');
 });
-Route::get('about', function () {
-    return 'Asshole!';
+Route::get('/home', function () {
+    return redirect('/w/');
 });
 
-Route::get('/todo', 'TodoController@index');
-Route::post('/todo', 'TodoController@submit');
-Route::get('/ass', function(){
+Route::post('user/all', 'UserController@getUsers');
+Route::post('user/detail', 'UserController@getUserById');
+Route::post('post/create', 'PostController@create');
+Route::post('post/getlist', 'PostController@getList');
+
+// for react routing
+Route::get('/w/{path?}', [
+    'uses' => 'HomeController@index',
+    'as' => 'home',
+    'where' => ['path' => '.*']
+]);
+
+
+
+// test
+Route::get('todo', 'TodoController@index');
+Route::post('todo', 'TodoController@submit');
+Route::get('ass', function(){
     return App\Todo::all();
 });
+Route::post('apple', 'TodoController@apple');
 
-Route::post('/apple', 'TodoController@apple');
