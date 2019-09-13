@@ -7,16 +7,7 @@ class PostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
-        {
-          title: 'ass',
-          content: 'apple',
-        },
-        {
-          title: 'bss',
-          content: 'bpple',
-        },
-      ],
+      list: [],
       users: [],
     }
   }
@@ -65,6 +56,7 @@ class PostList extends React.Component {
               title={item.title}
               content={item.content}
               image={item.image}
+              id={item.id}
               user={this.findUserById(item.user_id)}
             />
           ))

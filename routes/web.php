@@ -22,8 +22,11 @@ Route::get('/home', function () {
 
 Route::post('user/all', 'UserController@getUsers');
 Route::post('user/detail', 'UserController@getUserById');
+Route::post('user/auth', 'UserController@getAuth');
 Route::post('post/create', 'PostController@create');
+Route::post('post/delete', 'PostController@delete');
 Route::post('post/getlist', 'PostController@getList');
+Route::post('post/find', 'PostController@findById');
 
 // for react routing
 Route::get('/w/{path?}', [

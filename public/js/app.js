@@ -70249,6 +70249,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          id = _this$props.id,
           image = _this$props.image,
           title = _this$props.title,
           user = _this$props.user,
@@ -70262,11 +70263,17 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "card-title"
+        className: "card-title",
+        onClick: function onClick() {
+          window.location = '/w/post/show/' + id;
+        },
+        style: {
+          cursor: 'pointer'
+        }
       }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
         className: "card-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "class": "border px-4"
+        className: "border px-4"
       }, "Author:  ", user !== undefined ? user.name : 'user not found')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "card-text"
       }, content)));
@@ -70378,23 +70385,23 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "mt-2 mb-5"
       }, "Create a new post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "form-group"
+        className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         "for": "formTitle"
       }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        "class": "form-control",
+        className: "form-control",
         id: "formTitle",
         value: title,
         onChange: function onChange(e) {
           return _this2.handleChangeTitle(e);
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "form-group"
+        className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         "for": "formContent"
       }, "content"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        "class": "form-control",
+        className: "form-control",
         id: "formContent",
         rows: "3",
         value: content,
@@ -70468,13 +70475,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PostList).call(this, props));
     _this.state = {
-      list: [{
-        title: 'ass',
-        content: 'apple'
-      }, {
-        title: 'bss',
-        content: 'bpple'
-      }],
+      list: [],
       users: []
     };
     return _this;
@@ -70535,6 +70536,7 @@ function (_React$Component) {
           title: item.title,
           content: item.content,
           image: item.image,
+          id: item.id,
           user: _this3.findUserById(item.user_id)
         });
       })));
@@ -70545,6 +70547,189 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (PostList);
+
+/***/ }),
+
+/***/ "./resources/js/components/Post/PostShow.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Post/PostShow.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var PostShow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PostShow, _React$Component);
+
+  function PostShow(props) {
+    var _this;
+
+    _classCallCheck(this, PostShow);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PostShow).call(this, props));
+    _this.state = {
+      image: '',
+      title: '',
+      content: '',
+      user_id: -1,
+      users: [],
+      auth: {}
+    };
+    return _this;
+  }
+
+  _createClass(PostShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var payload = {
+        id: this.props.match.params.id
+      };
+      axios.post('/post/find', payload).then(function (res) {
+        console.log('--------- POST/SHOW ---------------');
+        console.log(res);
+
+        _this2.setState({
+          title: res.data.title,
+          content: res.data.content,
+          image: res.data.image,
+          user_id: res.data.user_id
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      axios.post('/user/all').then(function (res) {
+        console.log('--------- USER/ALL ---------------');
+        console.log(res);
+
+        _this2.setState({
+          users: res.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      axios.post('/user/auth').then(function (res) {
+        console.log('--------- USER/AUTH ---------------');
+        console.log(res);
+
+        _this2.setState({
+          auth: res.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    } // check if this post is my post
+
+  }, {
+    key: "checkIfMyPost",
+    value: function checkIfMyPost() {
+      var _this$state = this.state,
+          auth = _this$state.auth,
+          user_id = _this$state.user_id;
+      return auth.id === user_id;
+    }
+  }, {
+    key: "findUserNameById",
+    value: function findUserNameById(id) {
+      var user = {};
+      user = this.state.users.find(function (u) {
+        return u.id === id;
+      });
+      if (typeof user === 'undefined') return '';
+      return user.name;
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      var payload = {
+        id: this.props.match.params.id
+      };
+      axios.post('/post/delete', payload).then(function (res) {
+        console.log('--------- POST/DELETE ---------------');
+        console.log(res);
+        alert('YEEEEE');
+        window.location = '/';
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit() {}
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _this$state2 = this.state,
+          image = _this$state2.image,
+          title = _this$state2.title,
+          user_id = _this$state2.user_id,
+          content = _this$state2.content;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card my-4"
+      }, this.checkIfMyPost() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mb-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-primary m-2",
+        onClick: function onClick() {
+          return _this3.handleEdit();
+        }
+      }, "Edit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-danger m-2",
+        onClick: function onClick() {
+          return _this3.handleDelete();
+        }
+      }, "delete")) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "card-img-top",
+        src: image,
+        alt: "Card image cap"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "card-title"
+      }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "card-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "border px-4"
+      }, "Author:  ", this.findUserNameById(user_id))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "card-text"
+      }, content)));
+    }
+  }]);
+
+  return PostShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PostShow);
 
 /***/ }),
 
@@ -70564,7 +70749,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Post_PostList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Post/PostList */ "./resources/js/components/Post/PostList.js");
 /* harmony import */ var _Post_PostCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Post/PostCreate */ "./resources/js/components/Post/PostCreate.js");
-/* harmony import */ var _NotFound__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NotFound */ "./resources/js/components/NotFound.js");
+/* harmony import */ var _Post_PostShow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Post/PostShow */ "./resources/js/components/Post/PostShow.js");
+/* harmony import */ var _NotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NotFound */ "./resources/js/components/NotFound.js");
+
 
 
 
@@ -70576,19 +70763,18 @@ var Router = function Router() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/w/",
-    render: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Post_PostList__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-    }
+    component: _Post_PostList__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/w/post/new",
-    render: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Post_PostCreate__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-    }
+    component: _Post_PostCreate__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/w/post/show/:id",
+    component: _Post_PostShow__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/w/*",
     render: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotFound__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotFound__WEBPACK_IMPORTED_MODULE_6__["default"], null);
     }
   }))));
 };

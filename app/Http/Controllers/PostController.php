@@ -54,4 +54,10 @@ class PostController extends Controller
         $posts = Post::all();
         return json_encode($posts, JSON_UNESCAPED_UNICODE);
     }
+
+    public function findById(Request $req)
+    {
+        $post = Post::find($req->id);
+        return json_encode($post, JSON_UNESCAPED_UNICODE);
+    }
 }

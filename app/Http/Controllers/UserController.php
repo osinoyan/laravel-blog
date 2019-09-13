@@ -30,4 +30,10 @@ class UserController extends Controller
         $users = User::all();
         return json_encode($users, JSON_UNESCAPED_UNICODE);
     }
+
+    public function getAuth()
+    {
+        $user = Auth::user();
+        return json_encode($user, JSON_UNESCAPED_UNICODE);
+    }
 }

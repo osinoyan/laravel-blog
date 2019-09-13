@@ -44,20 +44,20 @@ class PostCreate extends React.Component {
       <div>
         <h2 className='mt-2 mb-5'>Create a new post</h2>
         <form>
-          <div class="form-group">
+          <div className="form-group">
             <label for="formTitle">Title</label>
             <input 
               type="text" 
-              class="form-control" 
+              className="form-control" 
               id="formTitle" 
               value={title}
               onChange={e => this.handleChangeTitle(e)}></input>
           </div>
 
-          <div class="form-group">
+          <div className="form-group">
             <label for="formContent">content</label>
             <textarea 
-              class="form-control" 
+              className="form-control" 
               id="formContent" 
               rows="3" 
               value={content}
