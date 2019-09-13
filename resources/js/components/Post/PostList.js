@@ -57,6 +57,7 @@ class PostList extends React.Component {
               content={item.content}
               image={item.image}
               id={item.id}
+              updatedAt={item.updated_at}
               user={this.findUserById(item.user_id)}
             />
           ))

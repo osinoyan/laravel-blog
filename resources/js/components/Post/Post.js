@@ -6,9 +6,10 @@ class Post extends React.Component {
   }
   
   render() {
-    const { id, image, title, user, content } = this.props
+    const { id, image, title, user, content, updatedAt } = this.props
     return (
       <div className="card my-4">
+        <div className="card-header">updated at: {updatedAt}</div>
         <img className="card-img-top" src={image} alt="Card image cap" />
         <div className="card-body">
           <h3 

@@ -33,6 +33,14 @@ class PostController extends Controller
     public function update(Request $req)
     {
         $post = Post::find($req->id);
+
+        if (Auth::user()->id != $post->user_id){
+            $err = [
+                'msg' => 'Permission Denied'
+            ];
+            return json_encode($err, JSON_UNESCAPED_UNICODE);
+        }
+            
         $post->title = $req->title;
         $post->content = $req->content;
         // $post->image = $req->image;
@@ -44,6 +52,14 @@ class PostController extends Controller
     public function delete(Request $req)
     {
         $post = Post::find($req->id);
+        
+        if (Auth::user()->id != $post->user_id) {
+            $err = [
+                'msg' => 'Permission Denied'
+            ];
+            return json_encode($err, JSON_UNESCAPED_UNICODE);
+        }
+
         $post->delete();
 
         return json_encode($post, JSON_UNESCAPED_UNICODE);

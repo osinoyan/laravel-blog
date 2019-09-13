@@ -20,9 +20,15 @@ Route::get('/home', function () {
     return redirect('/w/');
 });
 
+
+Route::post('comment/get', 'CommentController@getCommentsByPostId');
+Route::post('comment/create', 'CommentController@create');
+Route::post('comment/delete', 'CommentController@delete');
+
 Route::post('user/all', 'UserController@getUsers');
 Route::post('user/detail', 'UserController@getUserById');
 Route::post('user/auth', 'UserController@getAuth');
+
 Route::post('post/create', 'PostController@create');
 Route::post('post/delete', 'PostController@delete');
 Route::post('post/update', 'PostController@update');
