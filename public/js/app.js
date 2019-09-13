@@ -70350,7 +70350,7 @@ function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/create', payload).then(function (res) {
         console.log('---------- POST/CREATE -------------');
         console.log(res);
-        alert('yeeee');
+        alert('CREATED SUCCESSFULLY!');
         window.location = '/';
       })["catch"](function (err) {
         console.log(err);
@@ -70403,7 +70403,7 @@ function (_React$Component) {
       }, "content"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "form-control",
         id: "formContent",
-        rows: "3",
+        rows: "20",
         value: content,
         onChange: function onChange(e) {
           return _this2.handleChangeContent(e);
@@ -70424,6 +70424,204 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (PostCreate);
+
+/***/ }),
+
+/***/ "./resources/js/components/Post/PostEdit.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Post/PostEdit.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var PostEdit =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PostEdit, _React$Component);
+
+  function PostEdit(props) {
+    var _this;
+
+    _classCallCheck(this, PostEdit);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PostEdit).call(this, props));
+    _this.state = {
+      id: _this.props.match.params.id,
+      image: '',
+      title: '',
+      content: '',
+      user_id: -1,
+      users: [],
+      auth: {}
+    };
+    return _this;
+  }
+
+  _createClass(PostEdit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var payload = {
+        id: this.state.id
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/find', payload).then(function (res) {
+        console.log('--------- POST/SHOW ---------------');
+        console.log(res);
+
+        _this2.setState({
+          title: res.data.title,
+          content: res.data.content,
+          image: res.data.image,
+          user_id: res.data.user_id
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/all').then(function (res) {
+        console.log('--------- USER/ALL ---------------');
+        console.log(res);
+
+        _this2.setState({
+          users: res.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/auth').then(function (res) {
+        console.log('--------- USER/AUTH ---------------');
+        console.log(res);
+
+        _this2.setState({
+          auth: res.data
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    } // check if this post is my post
+
+  }, {
+    key: "checkIfMyPost",
+    value: function checkIfMyPost() {
+      var _this$state = this.state,
+          auth = _this$state.auth,
+          user_id = _this$state.user_id;
+      return auth.id === user_id;
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var payload = {
+        id: this.state.id,
+        title: this.state.title,
+        content: this.state.content
+      };
+      console.log(payload);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/update', payload).then(function (res) {
+        console.log('---------- POST/UPDATE -------------');
+        console.log(res);
+        alert('UPDATED SUCCESSFULLY!');
+        window.location = '/';
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: "handleChangeContent",
+    value: function handleChangeContent(e) {
+      var content = this.state.content;
+      content = e.target.value;
+      this.setState({
+        content: content
+      });
+    }
+  }, {
+    key: "handleChangeTitle",
+    value: function handleChangeTitle(e) {
+      var title = this.state.title;
+      title = e.target.value;
+      this.setState({
+        title: title
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _this$state2 = this.state,
+          id = _this$state2.id,
+          title = _this$state2.title,
+          content = _this$state2.content;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.checkIfMyPost() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "mt-2 mb-5"
+      }, "Edit Post ", '#' + id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        "for": "formTitle"
+      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        id: "formTitle",
+        value: title,
+        onChange: function onChange(e) {
+          return _this3.handleChangeTitle(e);
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        "for": "formContent"
+      }, "content"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "form-control",
+        id: "formContent",
+        rows: "20",
+        value: content,
+        onChange: function onChange(e) {
+          return _this3.handleChangeContent(e);
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mb-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-primary",
+        onClick: function onClick() {
+          return _this3.handleSubmit();
+        }
+      }, "Submit")))) : '');
+    }
+  }]);
+
+  return PostEdit;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PostEdit);
 
 /***/ }),
 
@@ -70593,6 +70791,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PostShow).call(this, props));
     _this.state = {
+      id: _this.props.match.params.id,
       image: '',
       title: '',
       content: '',
@@ -70609,7 +70808,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var payload = {
-        id: this.props.match.params.id
+        id: this.state.id
       };
       axios.post('/post/find', payload).then(function (res) {
         console.log('--------- POST/SHOW ---------------');
@@ -70668,7 +70867,7 @@ function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete() {
       var payload = {
-        id: this.props.match.params.id
+        id: this.state.id
       };
       axios.post('/post/delete', payload).then(function (res) {
         console.log('--------- POST/DELETE ---------------');
@@ -70681,7 +70880,9 @@ function (_React$Component) {
     }
   }, {
     key: "handleEdit",
-    value: function handleEdit() {}
+    value: function handleEdit() {
+      window.location = '/w/post/edit/' + this.state.id;
+    }
   }, {
     key: "render",
     value: function render() {
@@ -70750,7 +70951,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post_PostList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Post/PostList */ "./resources/js/components/Post/PostList.js");
 /* harmony import */ var _Post_PostCreate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Post/PostCreate */ "./resources/js/components/Post/PostCreate.js");
 /* harmony import */ var _Post_PostShow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Post/PostShow */ "./resources/js/components/Post/PostShow.js");
-/* harmony import */ var _NotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NotFound */ "./resources/js/components/NotFound.js");
+/* harmony import */ var _Post_PostEdit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Post/PostEdit */ "./resources/js/components/Post/PostEdit.js");
+/* harmony import */ var _NotFound__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./NotFound */ "./resources/js/components/NotFound.js");
+
 
 
 
@@ -70772,9 +70975,12 @@ var Router = function Router() {
     path: "/w/post/show/:id",
     component: _Post_PostShow__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/w/post/edit/:id",
+    component: _Post_PostEdit__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/w/*",
     render: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotFound__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotFound__WEBPACK_IMPORTED_MODULE_7__["default"], null);
     }
   }))));
 };

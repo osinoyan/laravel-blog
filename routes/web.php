@@ -25,6 +25,7 @@ Route::post('user/detail', 'UserController@getUserById');
 Route::post('user/auth', 'UserController@getAuth');
 Route::post('post/create', 'PostController@create');
 Route::post('post/delete', 'PostController@delete');
+Route::post('post/update', 'PostController@update');
 Route::post('post/getlist', 'PostController@getList');
 Route::post('post/find', 'PostController@findById');
 

@@ -35,7 +35,7 @@ class PostController extends Controller
         $post = Post::find($req->id);
         $post->title = $req->title;
         $post->content = $req->content;
-        $post->image = $req->image;
+        // $post->image = $req->image;
         $post->save();
 
         return json_encode($post, JSON_UNESCAPED_UNICODE);

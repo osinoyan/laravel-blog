@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import PostList from './Post/PostList'
 import PostCreate from './Post/PostCreate'
 import PostShow from './Post/PostShow'
+import PostEdit from './Post/PostEdit'
 
 import NotFound from './NotFound'
 
@@ -15,6 +16,7 @@ const Router = () => (
         <Route exact path='/w/' component={PostList} />
         <Route exact path='/w/post/new' component={PostCreate} />
         <Route path='/w/post/show/:id' component={PostShow} />
+        <Route path='/w/post/edit/:id' component={PostEdit} />
 
         <Route path='/w/*' render={() => <NotFound />} />
       </Switch>

@@ -19,7 +19,7 @@ class PostCreate extends React.Component {
     axios.post('/post/create', payload).then(res => {
       console.log('---------- POST/CREATE -------------')
       console.log(res)
-      alert('yeeee')
+      alert('CREATED SUCCESSFULLY!')
       window.location = '/'
     }).catch(err => {
       console.log(err)
@@ -59,7 +59,7 @@ class PostCreate extends React.Component {
             <textarea 
               className="form-control" 
               id="formContent" 
-              rows="3" 
+              rows="20" 
               value={content}
               onChange={e => this.handleChangeContent(e)}></textarea>
           </div>

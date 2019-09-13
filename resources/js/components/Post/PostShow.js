@@ -4,6 +4,7 @@ class PostShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: this.props.match.params.id,
       image: '',
       title: '',
       content: '',
@@ -15,7 +16,7 @@ class PostShow extends React.Component {
 
   componentDidMount() {
     const payload = {
-      id: this.props.match.params.id
+      id: this.state.id,
     }
     axios.post('/post/find', payload).then(res => {
       console.log('--------- POST/SHOW ---------------')
@@ -62,7 +63,7 @@ class PostShow extends React.Component {
   
   handleDelete() {
     const payload = {
-      id: this.props.match.params.id
+      id: this.state.id
     }
     axios.post('/post/delete', payload).then(res => {
       console.log('--------- POST/DELETE ---------------')
@@ -75,7 +76,7 @@ class PostShow extends React.Component {
   }
 
   handleEdit(){
-
+    window.location = '/w/post/edit/' + this.state.id
   }
 
   render() {
