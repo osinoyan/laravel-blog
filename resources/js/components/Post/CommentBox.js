@@ -7,6 +7,40 @@ class CommentBox extends React.Component {
     this.state = {
       auth: this.props.auth,
       user_id: this.props.user_id,
+      timezoneOffset: new Date().getTimezoneOffset(),
+      now: new Date().getTime() + new Date().getTimezoneOffset() * 60000,
+    }
+  }
+
+  componentDidMount() {
+    setInterval(
+      () => {
+        this.setState({
+          now: new Date().getTime() + this.state.timezoneOffset * 60000
+        })
+      }, 1000 * 10)
+  }
+
+  timeBeforeNow(t) {
+    const { now } = this.state
+    let then = Date.parse(t)
+    let compareSec = (now - then) / 1000
+    if (compareSec < 1) {
+      return '剛剛'
+    } else if (compareSec < 60) {
+      return Math.floor(compareSec) + '秒前'
+    } else if (compareSec < 60 * 60) {
+      return Math.floor(compareSec / 60) + '分鐘前'
+    } else if (compareSec < 60 * 24 * 60) {
+      return Math.floor(compareSec / 60 / 60) + '小時前'
+    } else if (compareSec < 60 * 24 * 60 * 2) {
+      return '昨天'
+    } else if (compareSec < 60 * 24 * 60 * 7) {
+      return Math.floor(compareSec / 60 / 60 / 24) + '天前'
+    } else if (compareSec < 60 * 24 * 60 * 7 * 4) {
+      return Math.floor(compareSec / 60 / 60 / 24 / 7) + '週前'
+    } else {
+      return '很久以前'
     }
   }
 
@@ -47,7 +81,7 @@ class CommentBox extends React.Component {
             :
             ''
           }
-          <div className="card-header">{name} <br /> {updatedAt}</div>
+          <div className="card-header">{name} <br /> 🕒 {this.timeBeforeNow(updatedAt)}</div>
           <div className="card-body">
             <p className="card-text">{message}</p>
           </div>

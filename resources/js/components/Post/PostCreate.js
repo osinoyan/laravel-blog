@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import FileUpload from '../FileUpload'
 
 class PostCreate extends React.Component {
   constructor(props) {
@@ -7,23 +8,43 @@ class PostCreate extends React.Component {
     this.state = {
       title: '',
       content: '',
+      image: '',
     }
+
+    this.onFileChange = this.onFileChange.bind(this)
   }
 
   handleSubmit(){
-    const payload = {
-      title: this.state.title,
-      content: this.state.content,
+    let payload = {
+      image: this.state.image,
     }
-    console.log(payload)
-    axios.post('/post/create', payload).then(res => {
-      console.log('---------- POST/CREATE -------------')
+    let filename = ''
+    axios.post('/p/upload', payload).then(res => {
+      console.log('---------- P/UPLOAD -------------')
       console.log(res)
-      alert('CREATED SUCCESSFULLY!')
-      window.location = '/'
+      alert('UPLOAD SUCCESSFULLY!')
+      filename = res.data.filename
+
+      payload = {
+        title: this.state.title,
+        content: this.state.content,
+        image: filename,
+      }
+      console.log(payload)
+      axios.post('/post/create', payload).then(res => {
+        console.log('---------- POST/CREATE -------------')
+        console.log(res)
+        alert('CREATED SUCCESSFULLY!')
+        window.location = '/'
+      }).catch(err => {
+        console.log(err)
+      })
+
     }).catch(err => {
       console.log(err)
     })
+
+
   }
 
   handleChangeContent(e){
@@ -38,14 +59,18 @@ class PostCreate extends React.Component {
     this.setState({ title })
   }
 
+  onFileChange(image){
+    this.setState({ image })
+  }
+
   render () {
-    const {title, content} = this.state
+    const {title, content, image} = this.state
     return (
       <div>
         <h2 className='mt-2 mb-5'>Create a new post</h2>
         <form>
           <div className="form-group">
-            <label for="formTitle">Title</label>
+            <label htmlFor="formTitle">Title</label>
             <input 
               type="text" 
               className="form-control" 
@@ -55,7 +80,12 @@ class PostCreate extends React.Component {
           </div>
 
           <div className="form-group">
-            <label for="formContent">content</label>
+            <label htmlFor="formImage">Picture</label>
+            <FileUpload onFileChange={this.onFileChange}/>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="formContent">content</label>
             <textarea 
               className="form-control" 
               id="formContent" 

@@ -49,7 +49,7 @@ class CommentCreate extends React.Component {
         <h2 className='mt-2 mt-5'>New comment ...</h2>
         <form>
           <div className="form-group">
-            <label for="formName">Name</label>
+            <label htmlFor="formName">Name</label>
             <input
               type="text"
               className="form-control"
@@ -59,7 +59,7 @@ class CommentCreate extends React.Component {
           </div>
 
           <div className="form-group">
-            <label for="formMessage">message</label>
+            <label htmlFor="formMessage">message</label>
             <textarea 
               className="form-control" 
               id="formMessage" 

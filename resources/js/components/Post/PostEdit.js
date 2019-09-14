@@ -1,18 +1,21 @@
 import React from 'react'
 import axios from 'axios'
+import FileUpload from '../FileUpload'
 
 class PostEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      image: '',
+      image: null,
       title: '',
       content: '',
       user_id: -1,
       users: [],
       auth: {},
+      dirty: false,
     }
+    this.onFileChange = this.onFileChange.bind(this)
   }
 
   componentDidMount() {
@@ -56,20 +59,56 @@ class PostEdit extends React.Component {
   }
 
   handleSubmit(){
-    const payload = {
-      id: this.state.id,
-      title: this.state.title,
-      content: this.state.content,
+    // new picture has been uploaded
+    if (this.state.dirty){
+      let payload = {
+        image: this.state.image,
+      }
+      let filename = ''
+      axios.post('/p/upload', payload).then(res => {
+        console.log('---------- P/UPLOAD -------------')
+        console.log(res)
+        alert('UPLOAD SUCCESSFULLY!')
+        filename = res.data.filename
+
+        payload = {
+          id: this.state.id,
+          title: this.state.title,
+          content: this.state.content,
+          image: filename,
+        }
+        console.log(payload)
+        axios.post('/post/update', payload).then(res => {
+          console.log('---------- POST/UPDATE -------------')
+          console.log(res)
+          alert('UPDATED SUCCESSFULLY!')
+          window.location = '/'
+        }).catch(err => {
+          console.log(err)
+        })
+
+      }).catch(err => {
+        console.log(err)
+      })
+    // there is no picture uploaded
+    } else {
+      const payload = {
+        id: this.state.id,
+        title: this.state.title,
+        content: this.state.content,
+        image: 'NULL',
+      }
+      console.log(payload)
+      axios.post('/post/update', payload).then(res => {
+        console.log('---------- POST/UPDATE -------------')
+        console.log(res)
+        alert('UPDATED SUCCESSFULLY!')
+       window.location = '/'
+      }).catch(err => {
+        console.log(err)
+      })
     }
-    console.log(payload)
-    axios.post('/post/update', payload).then(res => {
-      console.log('---------- POST/UPDATE -------------')
-      console.log(res)
-      alert('UPDATED SUCCESSFULLY!')
-      window.location = '/'
-    }).catch(err => {
-      console.log(err)
-    })
+
   }
 
   handleChangeContent(e){
@@ -84,6 +123,13 @@ class PostEdit extends React.Component {
     this.setState({ title })
   }
 
+  onFileChange(image) {
+    this.setState({ 
+      image,
+      dirty: true,
+    })
+  }
+
   render () {
     const {id, title, content} = this.state
     return (
@@ -94,7 +140,7 @@ class PostEdit extends React.Component {
             <h2 className='mt-2 mb-5'>Edit Post {'#' + id}</h2>
             <form>
               <div className="form-group">
-                <label for="formTitle">Title</label>
+                <label htmlFor="formTitle">Title</label>
                 <input 
                   type="text" 
                   className="form-control" 
@@ -104,7 +150,12 @@ class PostEdit extends React.Component {
               </div>
 
               <div className="form-group">
-                <label for="formContent">content</label>
+                <label htmlFor="formImage">Picture</label>
+                <FileUpload onFileChange={this.onFileChange} />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="formContent">content</label>
                 <textarea 
                   className="form-control" 
                   id="formContent" 

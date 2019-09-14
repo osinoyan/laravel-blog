@@ -9,10 +9,11 @@ class PostList extends React.Component {
     this.state = {
       list: [],
       users: [],
+      auth: {},
     }
   }
   
-  componentDidMount(){
+  componentDidMount() {
     axios.post('/post/getlist').then(res => {
       console.log('--------- POST/GETLIST ---------------')
       console.log(res)
@@ -28,12 +29,28 @@ class PostList extends React.Component {
     }).catch(err => {
       console.log(err)
     })
+
+    axios.post('/user/auth').then(res => {
+      console.log('--------- USER/AUTH ---------------')
+      console.log(res)
+      this.setState({ auth: res.data })
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   findUserById(id) {
     let user = {}
     user = this.state.users.find(u => u.id === id)
     return user
+  }
+
+  onClickNewPost() {
+    if (this.state.auth.id === 0){
+      window.location = '/login'
+    } else {
+      window.location = '/w/post/new'
+    }
   }
 
   render () {
@@ -44,7 +61,7 @@ class PostList extends React.Component {
           <button 
             type="button" 
             className="btn btn-primary"
-            onClick={() => location.assign('/w/post/new') }>
+            onClick={() => this.onClickNewPost() }>
             New Post
           </button>
         </div>

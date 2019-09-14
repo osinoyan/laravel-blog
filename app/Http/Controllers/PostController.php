@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 
@@ -25,7 +25,7 @@ class PostController extends Controller
             'title' => $req->title,
             'content' => $req->content,
             'user_id' => Auth::user()->id,
-            'image' => '---',
+            'image' => $req->image,
         ]);
         return $post;
     }
@@ -43,7 +43,8 @@ class PostController extends Controller
             
         $post->title = $req->title;
         $post->content = $req->content;
-        // $post->image = $req->image;
+        if(strcmp($req->image, "NULL") != 0) 
+            $post->image = $req->image;
         $post->save();
 
         return json_encode($post, JSON_UNESCAPED_UNICODE);
@@ -67,7 +68,8 @@ class PostController extends Controller
 
     public function getList()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')
+               ->get();
         return json_encode($posts, JSON_UNESCAPED_UNICODE);
     }
 

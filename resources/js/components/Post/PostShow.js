@@ -7,7 +7,7 @@ class PostShow extends React.Component {
     super(props)
     this.state = {
       id: this.props.match.params.id,
-      image: '',
+      image: null,
       title: '',
       content: '',
       user_id: -1,
@@ -125,7 +125,12 @@ class PostShow extends React.Component {
             :
             ''
           }
-          <img className="card-img-top" src={image} alt="Card image cap" />
+          {image !== null 
+            ? 
+            <img className="card-img-top" src={'/images/post/' + image} alt="Card image cap" />
+            :
+            ''
+          }
           <div className="card-body">
             <h1 className="card-title">{title}</h1>
             <h5 className="card-title">

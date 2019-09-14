@@ -21,6 +21,9 @@ Route::get('/home', function () {
 });
 
 
+Route::post('p/upload', 'PictureController@store');
+
+
 Route::post('comment/get', 'CommentController@getCommentsByPostId');
 Route::post('comment/create', 'CommentController@create');
 Route::post('comment/delete', 'CommentController@delete');

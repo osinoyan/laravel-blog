@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function getUserById(Request $req)
@@ -33,6 +33,17 @@ class UserController extends Controller
 
     public function getAuth()
     {
+        if (Auth::user() == null){
+            $back = ([
+                'created_at' => "2000-01-01 00:00:00",
+                'email' => "",
+                'email_verified_at' => null,
+                'id' => 0,
+                'name' => "guest",
+                'updated_at' => "2000-01-01 00:00:00",
+            ]);
+            return json_encode($back, JSON_UNESCAPED_UNICODE);
+        }
         $user = Auth::user();
         return json_encode($user, JSON_UNESCAPED_UNICODE);
     }
