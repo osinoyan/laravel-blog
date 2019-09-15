@@ -9,41 +9,52 @@ class PostCreate extends React.Component {
       title: '',
       content: '',
       image: '',
+      dirty: false,
     }
 
     this.onFileChange = this.onFileChange.bind(this)
   }
 
   handleSubmit(){
-    let payload = {
-      image: this.state.image,
-    }
-    let filename = ''
-    axios.post('/p/upload', payload).then(res => {
-      console.log('---------- P/UPLOAD -------------')
-      console.log(res)
-      alert('UPLOAD SUCCESSFULLY!')
-      filename = res.data.filename
+    // new picture has been uploaded
+    if (this.state.dirty) {
+      let payload = {
+        image: this.state.image,
+      }
+      let filename = ''
+      axios.post('/p/upload', payload).then(res => {
+        // alert('UPLOAD SUCCESSFULLY!')
+        filename = res.data.filename
 
-      payload = {
+        payload = {
+          title: this.state.title,
+          content: this.state.content,
+          image: filename,
+        }
+        axios.post('/post/create', payload).then(res => {
+          alert('CREATED SUCCESSFULLY!')
+          window.location = '/'
+        }).catch(err => {
+          console.log(err)
+        })
+
+      }).catch(err => {
+        console.log(err)
+      })
+      // there is no picture uploaded
+    } else {
+      let payload = {
         title: this.state.title,
         content: this.state.content,
-        image: filename,
+        image: 'NULL',
       }
-      console.log(payload)
       axios.post('/post/create', payload).then(res => {
-        console.log('---------- POST/CREATE -------------')
-        console.log(res)
         alert('CREATED SUCCESSFULLY!')
         window.location = '/'
       }).catch(err => {
         console.log(err)
       })
-
-    }).catch(err => {
-      console.log(err)
-    })
-
+    }
 
   }
 
@@ -59,8 +70,11 @@ class PostCreate extends React.Component {
     this.setState({ title })
   }
 
-  onFileChange(image){
-    this.setState({ image })
+  onFileChange(image) {
+    this.setState({
+      image,
+      dirty: true,
+    })
   }
 
   render () {

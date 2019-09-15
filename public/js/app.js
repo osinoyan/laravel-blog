@@ -66564,7 +66564,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72278,6 +72278,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/core */ "./node_modules/@emotion/core/dist/core.browser.esm.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72296,8 +72297,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  white-space: pre-line;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
+ // for emotion css
+
+/** @jsx jsx */
+
+
+
+var _content = Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["css"])(_templateObject());
 
 var CommentBox =
 /*#__PURE__*/
@@ -72362,9 +72381,7 @@ function (_React$Component) {
         comment_id: this.props.comment_id
       };
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/comment/delete', payload).then(function (res) {
-        console.log('--------- COMMENT/DELETE ---------------');
-        console.log(res);
-        alert('YEEEEE');
+        alert('DELETE SUCCESSFULLY');
       })["catch"](function (err) {
         console.log(err);
       });
@@ -72387,22 +72404,23 @@ function (_React$Component) {
           name = _this$props.name,
           message = _this$props.message,
           updatedAt = _this$props.updatedAt;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
         className: "card my-4"
-      }, this.checkIfMyPost() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.checkIfMyPost() ? Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
         className: "mb-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("button", {
         type: "button",
         className: "btn btn-danger m-2",
         onClick: function onClick() {
           return _this3.handleDelete();
         }
-      }, "delete")) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "delete")) : '', Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
         className: "card-header"
-      }, name, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " \uD83D\uDD52 ", this.timeBeforeNow(updatedAt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, name, " ", Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("br", null), " \uD83D\uDD52 ", this.timeBeforeNow(updatedAt)), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
         className: "card-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "card-text"
+      }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("p", {
+        className: "card-text",
+        css: _content
       }, message))));
     }
   }]);
@@ -72476,11 +72494,8 @@ function (_React$Component) {
         name: this.state.name,
         message: this.state.message
       };
-      console.log(payload);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/comment/create', payload).then(function (res) {
-        console.log('---------- COMMENT/CREATE -------------');
-        console.log(res); // alert('CREATED SUCCESSFULLY!')
-
+        // alert('CREATED SUCCESSFULLY!')
         _this2.setState({
           name: '',
           message: ''
@@ -72590,6 +72605,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  white-space: pre-line;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["\n  color: #b5babf;\n"]);
 
@@ -72619,6 +72644,8 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 var _link = Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject());
 
 var _time = Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject2());
+
+var _content = Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["css"])(_templateObject3());
 
 var Post =
 /*#__PURE__*/
@@ -72689,15 +72716,15 @@ function (_React$Component) {
       }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("div", {
         className: "card-header",
         css: _time
-      }, "updated at: ", this.timeBeforeNow(updatedAt)), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("img", {
+      }, "updated at: ", this.timeBeforeNow(updatedAt)), image !== 'NULL' ? Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("img", {
         className: "card-img-top",
         css: _link,
         onClick: function onClick() {
           window.location = '/w/post/show/' + id;
         },
         src: '/images/post/' + image,
-        alt: "Card image cap"
-      }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("div", {
+        alt: "image"
+      }) : '', Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("div", {
         className: "card-body"
       }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("h3", {
         className: "card-title",
@@ -72710,7 +72737,8 @@ function (_React$Component) {
       }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("span", {
         className: "border px-4"
       }, "Author:  ", user !== undefined ? user.name : 'user not found')), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_1__["jsx"])("p", {
-        className: "card-text"
+        className: "card-text",
+        css: _content
       }, content)));
     }
   }]);
@@ -72772,7 +72800,8 @@ function (_React$Component) {
     _this.state = {
       title: '',
       content: '',
-      image: ''
+      image: '',
+      dirty: false
     };
     _this.onFileChange = _this.onFileChange.bind(_assertThisInitialized(_this));
     return _this;
@@ -72783,32 +72812,42 @@ function (_React$Component) {
     value: function handleSubmit() {
       var _this2 = this;
 
-      var payload = {
-        image: this.state.image
-      };
-      var filename = '';
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/p/upload', payload).then(function (res) {
-        console.log('---------- P/UPLOAD -------------');
-        console.log(res);
-        alert('UPLOAD SUCCESSFULLY!');
-        filename = res.data.filename;
-        payload = {
-          title: _this2.state.title,
-          content: _this2.state.content,
-          image: filename
+      // new picture has been uploaded
+      if (this.state.dirty) {
+        var payload = {
+          image: this.state.image
         };
-        console.log(payload);
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/create', payload).then(function (res) {
-          console.log('---------- POST/CREATE -------------');
-          console.log(res);
+        var filename = '';
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/p/upload', payload).then(function (res) {
+          // alert('UPLOAD SUCCESSFULLY!')
+          filename = res.data.filename;
+          payload = {
+            title: _this2.state.title,
+            content: _this2.state.content,
+            image: filename
+          };
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/create', payload).then(function (res) {
+            alert('CREATED SUCCESSFULLY!');
+            window.location = '/';
+          })["catch"](function (err) {
+            console.log(err);
+          });
+        })["catch"](function (err) {
+          console.log(err);
+        }); // there is no picture uploaded
+      } else {
+        var _payload = {
+          title: this.state.title,
+          content: this.state.content,
+          image: 'NULL'
+        };
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/create', _payload).then(function (res) {
           alert('CREATED SUCCESSFULLY!');
           window.location = '/';
         })["catch"](function (err) {
           console.log(err);
         });
-      })["catch"](function (err) {
-        console.log(err);
-      });
+      }
     }
   }, {
     key: "handleChangeContent",
@@ -72832,7 +72871,8 @@ function (_React$Component) {
     key: "onFileChange",
     value: function onFileChange(image) {
       this.setState({
-        image: image
+        image: image,
+        dirty: true
       });
     }
   }, {
@@ -72965,9 +73005,6 @@ function (_React$Component) {
         id: this.state.id
       };
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/find', payload).then(function (res) {
-        console.log('--------- POST/SHOW ---------------');
-        console.log(res);
-
         _this2.setState({
           title: res.data.title,
           content: res.data.content,
@@ -72978,9 +73015,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/all').then(function (res) {
-        console.log('--------- USER/ALL ---------------');
-        console.log(res);
-
         _this2.setState({
           users: res.data
         });
@@ -72988,9 +73022,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/auth').then(function (res) {
-        console.log('--------- USER/AUTH ---------------');
-        console.log(res);
-
         _this2.setState({
           auth: res.data
         });
@@ -73019,8 +73050,6 @@ function (_React$Component) {
         };
         var filename = '';
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/p/upload', payload).then(function (res) {
-          console.log('---------- P/UPLOAD -------------');
-          console.log(res);
           alert('UPLOAD SUCCESSFULLY!');
           filename = res.data.filename;
           payload = {
@@ -73031,8 +73060,6 @@ function (_React$Component) {
           };
           console.log(payload);
           axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/update', payload).then(function (res) {
-            console.log('---------- POST/UPDATE -------------');
-            console.log(res);
             alert('UPDATED SUCCESSFULLY!');
             window.location = '/';
           })["catch"](function (err) {
@@ -73050,8 +73077,6 @@ function (_React$Component) {
         };
         console.log(_payload);
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/update', _payload).then(function (res) {
-          console.log('---------- POST/UPDATE -------------');
-          console.log(res);
           alert('UPDATED SUCCESSFULLY!');
           window.location = '/';
         })["catch"](function (err) {
@@ -73206,9 +73231,6 @@ function (_React$Component) {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/post/getlist').then(function (res) {
-        console.log('--------- POST/GETLIST ---------------');
-        console.log(res);
-
         _this2.setState({
           list: res.data
         });
@@ -73216,9 +73238,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/all').then(function (res) {
-        console.log('--------- USER/ALL ---------------');
-        console.log(res);
-
         _this2.setState({
           users: res.data
         });
@@ -73226,9 +73245,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/user/auth').then(function (res) {
-        console.log('--------- USER/AUTH ---------------');
-        console.log(res);
-
         _this2.setState({
           auth: res.data
         });
@@ -73302,6 +73318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CommentCreate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CommentCreate */ "./resources/js/components/Post/CommentCreate.js");
 /* harmony import */ var _CommentBox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CommentBox */ "./resources/js/components/Post/CommentBox.js");
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/core */ "./node_modules/@emotion/core/dist/core.browser.esm.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73320,9 +73337,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  white-space: pre-line;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
+ // for emotion css
+
+/** @jsx jsx */
+
+
+
+var _content = Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["css"])(_templateObject());
 
 var PostShow =
 /*#__PURE__*/
@@ -73357,9 +73392,6 @@ function (_React$Component) {
         id: this.state.id
       };
       axios.post('/post/find', payload).then(function (res) {
-        console.log('--------- POST/SHOW ---------------');
-        console.log(res);
-
         _this2.setState({
           title: res.data.title,
           content: res.data.content,
@@ -73370,9 +73402,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios.post('/user/all').then(function (res) {
-        console.log('--------- USER/ALL ---------------');
-        console.log(res);
-
         _this2.setState({
           users: res.data
         });
@@ -73380,9 +73409,6 @@ function (_React$Component) {
         console.log(err);
       });
       axios.post('/user/auth').then(function (res) {
-        console.log('--------- USER/AUTH ---------------');
-        console.log(res);
-
         _this2.setState({
           auth: res.data
         });
@@ -73401,8 +73427,6 @@ function (_React$Component) {
       };
       setInterval(function () {
         axios.post('/comment/get', payload).then(function (res) {
-          console.log('--------- COMMTENT/GET ---------------'); // console.log(res)
-
           _this3.setState({
             comments: res.data
           });
@@ -73437,9 +73461,7 @@ function (_React$Component) {
         id: this.state.id
       };
       axios.post('/post/delete', payload).then(function (res) {
-        console.log('--------- POST/DELETE ---------------');
-        console.log(res);
-        alert('YEEEEE');
+        alert('POST DELETED');
         window.location = '/';
       })["catch"](function (err) {
         console.log(err);
@@ -73463,41 +73485,42 @@ function (_React$Component) {
           content = _this$state2.content,
           comments = _this$state2.comments,
           auth = _this$state2.auth;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
         className: "card my-4"
-      }, this.checkIfMyPost() ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.checkIfMyPost() ? Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
         className: "mb-3"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("button", {
         type: "button",
         className: "btn btn-primary m-2",
         onClick: function onClick() {
           return _this4.handleEdit();
         }
-      }, "Edit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Edit"), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("button", {
         type: "button",
         className: "btn btn-danger m-2",
         onClick: function onClick() {
           return _this4.handleDelete();
         }
-      }, "delete")) : '', image !== null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, "delete")) : '', image !== 'NULL' && image !== null ? Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("img", {
         className: "card-img-top",
         src: '/images/post/' + image,
-        alt: "Card image cap"
-      }) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        alt: "image"
+      }) : '', Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
         className: "card-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h1", {
         className: "card-title"
-      }, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      }, title), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h5", {
         className: "card-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("span", {
         className: "border px-4"
-      }, "Author:  ", this.findUserNameById(user_id))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "card-text"
-      }, content))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CommentList, {
+      }, "Author:  ", this.findUserNameById(user_id))), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("p", {
+        className: "card-text",
+        css: _content
+      }, content))), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])(CommentList, {
         comments: comments,
         auth: auth,
         user_id: user_id
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentCreate__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])(_CommentCreate__WEBPACK_IMPORTED_MODULE_1__["default"], {
         post_id: id
       })));
     }
@@ -73509,12 +73532,12 @@ function (_React$Component) {
 /* harmony default export */ __webpack_exports__["default"] = (PostShow);
 
 var CommentList = function CommentList(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+  return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h2", {
     className: "mt-2 mt-5"
   }, "Comments"), props.comments.map(function (item, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
       key: i
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentBox__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_3__["jsx"])(_CommentBox__WEBPACK_IMPORTED_MODULE_2__["default"], {
       auth: props.auth,
       user_id: props.user_id,
       comment_id: item.comment_id,

@@ -23,8 +23,6 @@ class PostEdit extends React.Component {
       id: this.state.id,
     }
     axios.post('/post/find', payload).then(res => {
-      console.log('--------- POST/SHOW ---------------')
-      console.log(res)
       this.setState({
         title: res.data.title,
         content: res.data.content,
@@ -36,16 +34,12 @@ class PostEdit extends React.Component {
     })
 
     axios.post('/user/all').then(res => {
-      console.log('--------- USER/ALL ---------------')
-      console.log(res)
       this.setState({ users: res.data })
     }).catch(err => {
       console.log(err)
     })
 
     axios.post('/user/auth').then(res => {
-      console.log('--------- USER/AUTH ---------------')
-      console.log(res)
       this.setState({ auth: res.data })
     }).catch(err => {
       console.log(err)
@@ -66,8 +60,6 @@ class PostEdit extends React.Component {
       }
       let filename = ''
       axios.post('/p/upload', payload).then(res => {
-        console.log('---------- P/UPLOAD -------------')
-        console.log(res)
         alert('UPLOAD SUCCESSFULLY!')
         filename = res.data.filename
 
@@ -79,8 +71,6 @@ class PostEdit extends React.Component {
         }
         console.log(payload)
         axios.post('/post/update', payload).then(res => {
-          console.log('---------- POST/UPDATE -------------')
-          console.log(res)
           alert('UPDATED SUCCESSFULLY!')
           window.location = '/'
         }).catch(err => {
@@ -100,8 +90,6 @@ class PostEdit extends React.Component {
       }
       console.log(payload)
       axios.post('/post/update', payload).then(res => {
-        console.log('---------- POST/UPDATE -------------')
-        console.log(res)
         alert('UPDATED SUCCESSFULLY!')
        window.location = '/'
       }).catch(err => {

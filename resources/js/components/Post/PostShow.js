@@ -1,6 +1,13 @@
 import React from 'react'
 import CommentCreate from './CommentCreate'
 import CommentBox from './CommentBox'
+// for emotion css
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const _content = css`
+  white-space: pre-line;
+`
 
 class PostShow extends React.Component {
   constructor(props) {
@@ -22,8 +29,6 @@ class PostShow extends React.Component {
       id: this.state.id,
     }
     axios.post('/post/find', payload).then(res => {
-      console.log('--------- POST/SHOW ---------------')
-      console.log(res)
       this.setState({ 
         title: res.data.title,
         content: res.data.content,
@@ -35,16 +40,12 @@ class PostShow extends React.Component {
     })
 
     axios.post('/user/all').then(res => {
-      console.log('--------- USER/ALL ---------------')
-      console.log(res)
       this.setState({ users: res.data })
     }).catch(err => {
       console.log(err)
     })
 
     axios.post('/user/auth').then(res => {
-      console.log('--------- USER/AUTH ---------------')
-      console.log(res)
       this.setState({ auth: res.data })
     }).catch(err => {
       console.log(err)
@@ -60,8 +61,6 @@ class PostShow extends React.Component {
     setInterval(
       () => {
         axios.post('/comment/get', payload).then(res => {
-          console.log('--------- COMMTENT/GET ---------------')
-          // console.log(res)
           this.setState({ comments: res.data })
         }).catch(err => {
           console.log(err)
@@ -88,9 +87,7 @@ class PostShow extends React.Component {
       id: this.state.id
     }
     axios.post('/post/delete', payload).then(res => {
-      console.log('--------- POST/DELETE ---------------')
-      console.log(res)
-      alert('YEEEEE')
+      alert('POST DELETED')
       window.location = '/'
     }).catch(err => {
       console.log(err)
@@ -125,9 +122,12 @@ class PostShow extends React.Component {
             :
             ''
           }
-          {image !== null 
-            ? 
-            <img className="card-img-top" src={'/images/post/' + image} alt="Card image cap" />
+          {image !== 'NULL' && image !== null
+            ?
+            <img
+              className="card-img-top"
+              src={'/images/post/' + image}
+              alt="image" />
             :
             ''
           }
@@ -138,7 +138,7 @@ class PostShow extends React.Component {
                 Author:  {this.findUserNameById(user_id)}
               </span>
             </h5>
-            <p className="card-text">{content}</p>
+            <p className="card-text" css={_content}>{content}</p>
           </div>
         </div>
         <div>

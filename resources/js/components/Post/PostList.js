@@ -15,24 +15,18 @@ class PostList extends React.Component {
   
   componentDidMount() {
     axios.post('/post/getlist').then(res => {
-      console.log('--------- POST/GETLIST ---------------')
-      console.log(res)
       this.setState({ list: res.data })
     }).catch(err => {
       console.log(err)
     })    
     
     axios.post('/user/all').then(res => {
-      console.log('--------- USER/ALL ---------------')
-      console.log(res)
       this.setState({ users: res.data })
     }).catch(err => {
       console.log(err)
     })
 
     axios.post('/user/auth').then(res => {
-      console.log('--------- USER/AUTH ---------------')
-      console.log(res)
       this.setState({ auth: res.data })
     }).catch(err => {
       console.log(err)

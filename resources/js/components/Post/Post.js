@@ -11,6 +11,10 @@ const _link = css`
 const _time = css`
   color: #b5babf;
 `
+const _content = css`
+  white-space: pre-line;
+`
+
 
 class Post extends React.Component {
   constructor(props) {
@@ -59,12 +63,18 @@ class Post extends React.Component {
     return (
       <div className="card my-4">
         <div className="card-header" css={_time}>updated at: {this.timeBeforeNow(updatedAt)}</div>
-        <img 
-          className="card-img-top"
-          css={_link}
-          onClick={() => { window.location = '/w/post/show/' + id }}
-          src={'/images/post/' + image} 
-          alt="Card image cap" />
+        {image !== 'NULL'
+          ?
+            <img 
+              className="card-img-top"
+              css={_link}
+              onClick={() => { window.location = '/w/post/show/' + id }}
+              src={'/images/post/' + image} 
+              alt="image" />
+          :
+          ''
+        }
+        
         <div className="card-body">
           <h3 
             className="card-title" 
@@ -77,7 +87,7 @@ class Post extends React.Component {
               Author:  {user !== undefined ? user.name : 'user not found'}
             </span>
           </h6>
-          <p className="card-text">{content}</p>
+          <p className="card-text" css={_content}>{content}</p>
         </div>
       </div>
     )

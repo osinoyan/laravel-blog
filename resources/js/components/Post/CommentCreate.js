@@ -16,10 +16,7 @@ class CommentCreate extends React.Component {
       name: this.state.name,
       message: this.state.message,
     }
-    console.log(payload)
     axios.post('/comment/create', payload).then(res => {
-      console.log('---------- COMMENT/CREATE -------------')
-      console.log(res)
       // alert('CREATED SUCCESSFULLY!')
       this.setState({
         name: '',

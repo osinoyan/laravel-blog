@@ -1,5 +1,12 @@
 import React from 'react'
 import axios from 'axios'
+// for emotion css
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+
+const _content = css`
+  white-space: pre-line;
+`
 
 class CommentBox extends React.Component {
   constructor(props) {
@@ -49,9 +56,7 @@ class CommentBox extends React.Component {
       comment_id: this.props.comment_id
     }
     axios.post('/comment/delete', payload).then(res => {
-      console.log('--------- COMMENT/DELETE ---------------')
-      console.log(res)
-      alert('YEEEEE')
+      alert('DELETE SUCCESSFULLY')
     }).catch(err => {
       console.log(err)
     })
@@ -83,7 +88,7 @@ class CommentBox extends React.Component {
           }
           <div className="card-header">{name} <br /> 🕒 {this.timeBeforeNow(updatedAt)}</div>
           <div className="card-body">
-            <p className="card-text">{message}</p>
+            <p className="card-text" css={_content}>{message}</p>
           </div>
         </div>
       </div>
