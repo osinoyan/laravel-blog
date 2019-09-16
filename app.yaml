@@ -1,0 +1,31 @@
+runtime: php
+env: flex
+
+runtime_config:
+  document_root: public
+
+# Ensure we skip ".env", which is only for local development
+skip_files:
+  - .env
+
+env_variables:
+  APP_LOG: errorlog
+  APP_DEBUG: true
+  APP_KEY: base64:rhXYmAyHRZG2yiQsJ+KoIWulvDtm6/eS65UMvl04yXg=
+  STORAGE_DIR: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
+  ## Set these environment variables according to your CloudSQL configuration.
+  DB_CONNECTION: mysql
+  DB_PORT: 3306
+  DB_HOST: 127.0.0.1
+  DB_DATABASE: laravel
+  DB_USERNAME: root
+  DB_PASSWORD: 675777
+  DB_SOCKET: "/cloudsql/leo-laravel-blog:asia-east1:laravel"
+
+beta_settings:
+    # for Cloud SQL, set this value to the Cloud SQL connection name,
+    # e.g. "project:region:cloudsql-instance"
+    cloud_sql_instances: "leo-laravel-blog:asia-east1:laravel"
